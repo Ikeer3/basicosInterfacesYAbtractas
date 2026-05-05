@@ -11,4 +11,12 @@ public abstract class Sensor {
     }
 
     public abstract String medir();
+
+    abstract class SensorHumedad extends Sensor {
+
+        @Override
+        public String medir() {
+            return "Hay una humedad del " + valor + "%";
+        }
+    }
 }
