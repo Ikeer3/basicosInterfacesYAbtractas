@@ -42,4 +42,20 @@ public abstract class Sensor {
             }
         }
     }
+
+    public static void main(String[] args) {
+
+        SensorHumedad humedad = new SensorHumedad();
+        humedad.setValor(55);
+        humedad.medir();
+
+        SensorTemperatura temperatura = new SensorTemperatura();
+        temperatura.setValor(23);
+
+        temperatura.configurarCelsius();
+        temperatura.medir();
+
+        temperatura.configurarFahrenheit();
+        temperatura.medir();
+    }
 }
