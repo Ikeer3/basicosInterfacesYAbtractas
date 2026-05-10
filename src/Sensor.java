@@ -1,6 +1,6 @@
 public abstract class Sensor {
 
-    protected int valor;
+    private int valor;
 
     public double getValor() {
         return valor;
@@ -10,13 +10,13 @@ public abstract class Sensor {
         this.valor = valor;
     }
 
-    public abstract String medir();
+    public abstract void medir();
 
-    abstract class SensorHumedad extends Sensor {
+    static class SensorHumedad extends Sensor {
 
         @Override
-        public String medir() {
-            return "Hay una humedad del " + valor + "%";
+        public void medir() {
+            System.out.println("\nHay una humedad del " + getValor() + "%");
         }
     }
 }
