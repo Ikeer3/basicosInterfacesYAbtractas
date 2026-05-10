@@ -19,4 +19,27 @@ public abstract class Sensor {
             System.out.println("\nHay una humedad del " + getValor() + "%");
         }
     }
+
+    static class SensorTemperatura extends Sensor {
+
+        private boolean mostrarFahrenheit = false;
+
+        public void configurarCelsius() {
+            mostrarFahrenheit = false;
+        }
+
+        public void configurarFahrenheit() {
+            mostrarFahrenheit = true;
+        }
+
+        @Override
+        public void medir() {
+            if (mostrarFahrenheit) {
+                double fahrenheit = getValor() * 1.8 + 32;
+                System.out.println("Hay una temperatura de " + fahrenheit + " grados Fahrenheit");
+            } else {
+                System.out.println("Hay una temperatura de " + getValor() + " grados");
+            }
+        }
+    }
 }
