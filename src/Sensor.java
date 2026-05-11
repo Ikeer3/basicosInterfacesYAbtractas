@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Sensor {
 
@@ -53,7 +54,7 @@ public abstract class Sensor {
                 double fahrenheit = getValor() * 1.8 + 32;
                 System.out.println("Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
             } else {
-                System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados");
+                System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
             }
         }
     }
@@ -64,12 +65,14 @@ public abstract class Sensor {
 
         String[] habitaciones = {"dormitorio", "baño", "cocina", "salón"};
 
+        Random random = new Random();
+
         for (String hab: habitaciones) {
             SensorHumedad humedad = new SensorHumedad(hab);
-            humedad.setValor((int) (50 + Math.random() * 10));
+            humedad.setValor(random.nextInt(50, 61));
 
             SensorTemperatura temperatura = new SensorTemperatura(hab);
-            temperatura.setValor((int) (20 + Math.random() * 10));
+            temperatura.setValor(random.nextInt(20, 31));
 
             if (hab.equals("dormitorio")) {
                 temperatura.configurarFahrenheit();
