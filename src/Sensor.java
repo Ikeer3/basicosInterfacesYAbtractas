@@ -51,26 +51,43 @@ public abstract class Sensor {
         public void medir() {
             if (mostrarFahrenheit) {
                 double fahrenheit = getValor() * 1.8 + 32;
-                System.out.println("Sensor de temperatura de " + fahrenheit + " grados Fahrenheit");
+                System.out.println("Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
             } else {
-                System.out.println("Sensor de temperatura de " + getValor() + " grados");
+                System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados");
             }
         }
     }
 
     public static void main(String[] args) {
-        
-        SensorHumedad humedad = new SensorHumedad("dormitorio");
-        humedad.setValor(55);
-        humedad.medir();
 
-        SensorTemperatura temperatura = new SensorTemperatura("salón");
-        temperatura.setValor(23);
+        ArrayList<Sensor> listaSensores = new ArrayList<>();
 
-        temperatura.configurarCelsius();
-        temperatura.medir();
+        String[] habitaciones = {"dormitorio", "baño", "cocina", "salón"};
 
-        temperatura.configurarFahrenheit();
-        temperatura.medir();
+        for (String hab: habitaciones) {
+            SensorHumedad humedad = new SensorHumedad(hab);
+            humedad.setValor((int) (50 + Math.random() * 10));
+
+            SensorTemperatura temperatura = new SensorTemperatura(hab);
+            temperatura.setValor((int) (20 + Math.random() * 10));
+
+            if (hab.equals("dormitorio")) {
+                temperatura.configurarFahrenheit();
+            }
+
+            listaSensores.add(humedad);
+            listaSensores.add(temperatura);
+        }
+
+        System.out.println("\n---SENSORES DE LA CASA---");
+        for (Sensor s: listaSensores) {
+            s.medir();
+        }
+
+//        temperatura.configurarCelsius();
+//        temperatura.medir();
+//
+//        temperatura.configurarFahrenheit();
+//        temperatura.medir();
     }
 }
