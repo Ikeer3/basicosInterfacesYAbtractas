@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Sensor {
+public abstract class Sensor implements AparatoElectrico {
 
     private int valor;
     protected String habitacion;
+    protected boolean encendido;
 
     public Sensor(String habitacion) {
         this.habitacion = habitacion;
@@ -18,6 +19,29 @@ public abstract class Sensor {
         this.valor = valor;
     }
 
+    @Override
+    public void encender() {
+        encendido = true;
+        System.out.println("Encendiendo sensor de " + habitacion);
+    }
+
+    @Override
+    public void apagar() {
+        encendido = false;
+        System.out.println("Apagando sensor de " + habitacion);
+    }
+
+    @Override
+    public void mostrarEstado() {
+        String estado;
+        if (encendido) {
+            estado = "Encendido";
+        } else {
+            estado = "Apagado";
+        }
+        System.out.println("Estado del sensor de " + habitacion + ": " + estado);
+    }
+
     public abstract void medir();
 
     static class SensorHumedad extends Sensor {
@@ -28,7 +52,11 @@ public abstract class Sensor {
 
         @Override
         public void medir() {
-            System.out.println("\nSensor de humedad de " + habitacion + ": " + getValor() + "%");
+            if (!encendido) {
+                System.out.println("Sensor de humedad de " + habitacion + ": desconectado");
+            } else {
+                System.out.println("Sensor de humedad de " + habitacion + ": " + getValor() + "%");
+            }
         }
     }
 
@@ -50,11 +78,15 @@ public abstract class Sensor {
 
         @Override
         public void medir() {
-            if (mostrarFahrenheit) {
-                double fahrenheit = getValor() * 1.8 + 32;
-                System.out.println("Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
+            if (!encendido) {
+                System.out.println("Sensor de temperatura de " + habitacion + ": desconectado");
             } else {
-                System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
+                if (mostrarFahrenheit) {
+                    double fahrenheit = getValor() * 1.8 + 32;
+                    System.out.println("Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
+                } else {
+                    System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
+                }
             }
         }
     }
@@ -63,27 +95,44 @@ public abstract class Sensor {
 
         ArrayList<Sensor> listaSensores = new ArrayList<>();
 
-        String[] habitaciones = {"dormitorio", "baño", "cocina", "salón"};
+        SensorHumedad humSalon = new SensorHumedad("salón");
+        humSalon.setValor(55);
+        humSalon.encender();
 
-        Random random = new Random();
+        SensorTemperatura tempDormitorio = new SensorTemperatura("dormitorio");
+        tempDormitorio.setValor(24);
 
-        for (String hab: habitaciones) {
-            SensorHumedad humedad = new SensorHumedad(hab);
-            humedad.setValor(random.nextInt(50, 61));
+        SensorTemperatura tempBanho = new SensorTemperatura("baño");
+        tempBanho.setValor(19);
+        tempBanho.encender();
+        tempBanho.configurarFahrenheit();
 
-            SensorTemperatura temperatura = new SensorTemperatura(hab);
-            temperatura.setValor(random.nextInt(20, 31));
-
-            if (hab.equals("dormitorio")) {
-                temperatura.configurarFahrenheit();
-            }
-
-            listaSensores.add(humedad);
-            listaSensores.add(temperatura);
-        }
+        listaSensores.add(humSalon);
+        listaSensores.add(tempDormitorio);
+        listaSensores.add(tempBanho);
+        
+//        String[] habitaciones = {"dormitorio", "baño", "cocina", "salón"};
+//
+//        Random random = new Random();
+//
+//        for (String hab: habitaciones) {
+//            SensorHumedad humedad = new SensorHumedad(hab);
+//            humedad.setValor(random.nextInt(50, 61));
+//
+//            SensorTemperatura temperatura = new SensorTemperatura(hab);
+//            temperatura.setValor(random.nextInt(20, 31));
+//
+//            if (hab.equals("dormitorio")) {
+//                temperatura.configurarFahrenheit();
+//            }
+//
+//            listaSensores.add(humedad);
+//            listaSensores.add(temperatura);
+//        }
 
         System.out.println("\n---SENSORES DE LA CASA---");
         for (Sensor s: listaSensores) {
+            s.mostrarEstado();
             s.medir();
         }
 
