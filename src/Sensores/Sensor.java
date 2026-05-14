@@ -54,9 +54,9 @@ public abstract class Sensor implements AparatoElectrico {
         @Override
         public void medir() {
             if (!encendido) {
-                System.out.println("Sensores.Sensor de humedad de " + habitacion + ": desconectado");
+                System.out.println("Sensor de humedad de " + habitacion + ": desconectado");
             } else {
-                System.out.println("Sensores.Sensor de humedad de " + habitacion + ": " + getValor() + "%");
+                System.out.println("Sensor de humedad de " + habitacion + ": " + getValor() + "%");
             }
         }
 
@@ -92,13 +92,13 @@ public abstract class Sensor implements AparatoElectrico {
         @Override
         public void medir() {
             if (!encendido) {
-                System.out.println("Sensores.Sensor de temperatura de " + habitacion + ": desconectado");
+                System.out.println("Sensor de temperatura de " + habitacion + ": desconectado");
             } else {
                 if (mostrarFahrenheit) {
                     double fahrenheit = getValor() * 1.8 + 32;
-                    System.out.println("Sensores.Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
+                    System.out.println("Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
                 } else {
-                    System.out.println("Sensores.Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
+                    System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
                 }
             }
         }
@@ -111,7 +111,6 @@ public abstract class Sensor implements AparatoElectrico {
         SensorHumedad humSalon = new SensorHumedad("salón");
         humSalon.encender();
         humSalon.setValor(55);
-        humSalon.setValor(91);
 
         SensorTemperatura tempDormitorio = new SensorTemperatura("dormitorio");
         tempDormitorio.setValor(24);
