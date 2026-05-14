@@ -44,7 +44,7 @@ public abstract class Sensor implements AparatoElectrico {
 
     public abstract void medir();
 
-    static class SensorHumedad extends Sensor {
+    static class SensorHumedad extends Sensor implements AparatoConAlarma {
 
         public SensorHumedad(String habitacion) {
             super(habitacion);
@@ -57,6 +57,11 @@ public abstract class Sensor implements AparatoElectrico {
             } else {
                 System.out.println("Sensor de humedad de " + habitacion + ": " + getValor() + "%");
             }
+        }
+
+        @Override
+        public void sonarAlarma() {
+            System.out.println("LA HUMEDAD EN " + habitacion.toUpperCase() + " ES SUPERIOR AL 90%. CONECTAR UN DESHUMIDIFICADOR!!");
         }
     }
 
