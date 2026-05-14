@@ -110,7 +110,7 @@ public abstract class Sensor implements AparatoElectrico {
         listaSensores.add(humSalon);
         listaSensores.add(tempDormitorio);
         listaSensores.add(tempBanho);
-        
+
 //        String[] habitaciones = {"dormitorio", "baño", "cocina", "salón"};
 //
 //        Random random = new Random();
