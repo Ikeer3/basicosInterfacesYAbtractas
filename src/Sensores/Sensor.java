@@ -1,5 +1,6 @@
+package Sensores;
+
 import java.util.ArrayList;
-import java.util.Random;
 
 public abstract class Sensor implements AparatoElectrico {
 
@@ -53,9 +54,16 @@ public abstract class Sensor implements AparatoElectrico {
         @Override
         public void medir() {
             if (!encendido) {
-                System.out.println("Sensor de humedad de " + habitacion + ": desconectado");
+                System.out.println("Sensores.Sensor de humedad de " + habitacion + ": desconectado");
             } else {
-                System.out.println("Sensor de humedad de " + habitacion + ": " + getValor() + "%");
+                System.out.println("Sensores.Sensor de humedad de " + habitacion + ": " + getValor() + "%");
+            }
+        }
+
+        public void setValor(int valor) {
+            super.setValor(valor);
+            if (encendido && getValor() > 90) {
+                sonarAlarma();
             }
         }
 
@@ -84,13 +92,13 @@ public abstract class Sensor implements AparatoElectrico {
         @Override
         public void medir() {
             if (!encendido) {
-                System.out.println("Sensor de temperatura de " + habitacion + ": desconectado");
+                System.out.println("Sensores.Sensor de temperatura de " + habitacion + ": desconectado");
             } else {
                 if (mostrarFahrenheit) {
                     double fahrenheit = getValor() * 1.8 + 32;
-                    System.out.println("Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
+                    System.out.println("Sensores.Sensor de temperatura de " + habitacion + ": " + fahrenheit + " grados Fahrenheit");
                 } else {
-                    System.out.println("Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
+                    System.out.println("Sensores.Sensor de temperatura de " + habitacion + ": " + getValor() + " grados Celsius");
                 }
             }
         }
@@ -101,8 +109,9 @@ public abstract class Sensor implements AparatoElectrico {
         ArrayList<Sensor> listaSensores = new ArrayList<>();
 
         SensorHumedad humSalon = new SensorHumedad("salón");
-        humSalon.setValor(55);
         humSalon.encender();
+        humSalon.setValor(55);
+        humSalon.setValor(91);
 
         SensorTemperatura tempDormitorio = new SensorTemperatura("dormitorio");
         tempDormitorio.setValor(24);

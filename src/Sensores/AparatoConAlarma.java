@@ -1,3 +1,5 @@
+package Sensores;
+
 public interface AparatoConAlarma {
 
     /**
