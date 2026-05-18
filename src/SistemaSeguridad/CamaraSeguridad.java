@@ -2,12 +2,11 @@ package SistemaSeguridad;
 
 public class CamaraSeguridad extends DispositivoSeguridad {
 
-    private String habitacion;
     private int resolucion;
 
-    public CamaraSeguridad(String nombreDispositivo, String habitacion) {
-        super(nombreDispositivo);
-        this.habitacion = habitacion;
+    public CamaraSeguridad(String nombreDispositivo, String habitacion, int resolucion) {
+        super(nombreDispositivo, habitacion);
+        this.resolucion = resolucion;
     }
 
     public void configurarResolucion(int res) {

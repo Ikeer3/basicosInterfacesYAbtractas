@@ -3,10 +3,12 @@ package SistemaSeguridad;
 public abstract class DispositivoSeguridad implements ControlRemoto {
 
     private String nombreDispositivo;
+    protected String habitacion;
     private double nivelbateria;
     protected boolean enLinea;
 
-    public DispositivoSeguridad(String nombreDispositivo) {
+    public DispositivoSeguridad(String nombreDispositivo, String habitacion) {
+        this.habitacion = habitacion;
         this.nombreDispositivo = nombreDispositivo;
         this.nivelbateria = 100;
     }
@@ -44,14 +46,7 @@ public abstract class DispositivoSeguridad implements ControlRemoto {
 
     public abstract void ejecutarAccion();
 
-//
-//
-//
-//    Crea la clase AlarmaHumo:
-//
-//    El método ejecutarAccion() debe imprimir: "Analizando partículas de aire en [habitación]...".
-//
-//            3. El Interfaz de Emergencia y la Automatización
+//      3. El Interfaz de Emergencia y la Automatización
 //    Crea la interfaz AlertaEmergencia.
 //
 //    Método: notificarAutoridades(). Añade un Javadoc: / Envía una señal de auxilio inmediata a la central de seguridad */.
