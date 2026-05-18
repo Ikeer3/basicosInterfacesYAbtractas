@@ -4,8 +4,8 @@ public class CamaraSeguridad extends DispositivoSeguridad {
 
     private int resolucion;
 
-    public CamaraSeguridad(String nombreDispositivo, String habitacion, int resolucion) {
-        super(nombreDispositivo, habitacion);
+    public CamaraSeguridad(String nombreDispositivo, int resolucion) {
+        super(nombreDispositivo);
         this.resolucion = resolucion;
     }
 
@@ -16,7 +16,7 @@ public class CamaraSeguridad extends DispositivoSeguridad {
     @Override
     public void ejecutarAccion() {
         if (enLinea) {
-            System.out.println("Grabando en " + habitacion + " con resolución " + resolucion);
+            System.out.println("Grabando en " + getNombreDispositivo() + " con resolución " + resolucion);
         } else {
             System.out.println(getNombreDispositivo() + ": Cámara fuera de servicio");
         }

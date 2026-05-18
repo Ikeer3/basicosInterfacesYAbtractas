@@ -3,12 +3,10 @@ package SistemaSeguridad;
 public abstract class DispositivoSeguridad implements ControlRemoto {
 
     private String nombreDispositivo;
-    protected String habitacion;
     private double nivelbateria;
     protected boolean enLinea;
 
-    public DispositivoSeguridad(String nombreDispositivo, String habitacion) {
-        this.habitacion = habitacion;
+    public DispositivoSeguridad(String nombreDispositivo) {
         this.nombreDispositivo = nombreDispositivo;
         this.nivelbateria = 100;
     }
@@ -49,22 +47,4 @@ public abstract class DispositivoSeguridad implements ControlRemoto {
     }
 
     public abstract void ejecutarAccion();
-
-//
-//            4. Ejecución (Main)
-//    Crea una lista de DispositivoSeguridad que contenga:
-//
-//    Una cámara en el "Garaje".
-//
-//    Una alarma de humo en la "Cocina".
-//
-//    Una cámara en la "Entrada".
-//
-//    Prueba lo siguiente:
-//
-//    Conecta todos los dispositivos.
-//
-//    Llama a ejecutarAccion() de todos ellos recorriendo la lista.
-//
-//    Baja manualmente la batería de la alarma de la cocina al 5% usando el setter para comprobar que la notificación de emergencia salta sola.
 }
