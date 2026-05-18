@@ -4,7 +4,7 @@ public abstract class DispositivoSeguridad implements ControlRemoto {
 
     private String nombreDispositivo;
     private double nivelbateria;
-    private boolean enLinea;
+    protected boolean enLinea;
 
     public DispositivoSeguridad(String nombreDispositivo) {
         this.nombreDispositivo = nombreDispositivo;
@@ -45,12 +45,7 @@ public abstract class DispositivoSeguridad implements ControlRemoto {
     public abstract void ejecutarAccion();
 
 //
-//            2. Las Hijas: Cámara y Alarma de Humo
-//    Crea la clase CamaraSeguridad:
 //
-//    Tiene un método configurarResolucion(String res).
-//
-//    El método ejecutarAccion() debe imprimir: "Grabando en [habitación] con resolución [res]". Si está desconectada, debe imprimir: "[nombre]: Cámara fuera de servicio".
 //
 //    Crea la clase AlarmaHumo:
 //
