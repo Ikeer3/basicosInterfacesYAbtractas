@@ -21,6 +21,10 @@ public abstract class DispositivoSeguridad implements ControlRemoto {
         return nivelbateria;
     }
 
+    public void setNivelbateria(double nivelbateria) {
+        this.nivelbateria = nivelbateria;
+    }
+
     @Override
     public void conectar() {
         enLinea = true;
@@ -46,19 +50,6 @@ public abstract class DispositivoSeguridad implements ControlRemoto {
 
     public abstract void ejecutarAccion();
 
-//      3. El Interfaz de Emergencia y la Automatización
-//    Crea la interfaz AlertaEmergencia.
-//
-//    Método: notificarAutoridades(). Añade un Javadoc: / Envía una señal de auxilio inmediata a la central de seguridad */.
-//
-//    Haz que la clase AlarmaHumo implemente esta interfaz.
-//
-//    El Reto Técnico:
-//    En DispositivoSeguridad, modifica el setter de nivelBateria.
-//
-//    Si la batería baja del 10%, el dispositivo debe imprimir automáticamente: "¡BATERÍA CRÍTICA EN [nombre]!".
-//
-//    En el caso específico de la AlarmaHumo, si la batería baja del 10%, además del mensaje anterior, debe llamar automáticamente al método notificarAutoridades() (porque una alarma sin batería es una emergencia de seguridad).
 //
 //            4. Ejecución (Main)
 //    Crea una lista de DispositivoSeguridad que contenga:
